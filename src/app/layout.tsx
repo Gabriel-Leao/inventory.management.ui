@@ -2,6 +2,8 @@ import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { Open_Sans } from 'next/font/google'
 
+import { DashboardWrapper } from '@/components/dashboardWrapper'
+
 import './globals.css'
 
 const openSans = Open_Sans({
@@ -23,7 +25,9 @@ export default function RootLayout({
     <html
       lang='en'
       className={`${openSans.variable} h-full antialiased`}>
-      <body>{children}</body>
+      <body>
+        <DashboardWrapper>{children}</DashboardWrapper>
+      </body>
     </html>
   )
 }
