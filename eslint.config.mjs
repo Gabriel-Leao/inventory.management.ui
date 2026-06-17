@@ -14,6 +14,7 @@ export default defineConfig([
   {
     plugins: {
       'simple-import-sort': simpleImportSort,
+      import: importPlugin,
     },
     rules: {
       'simple-import-sort/imports': [
@@ -24,6 +25,7 @@ export default defineConfig([
       ],
       'simple-import-sort/exports': 'error',
       'no-duplicate-imports': 'error',
+      'import/no-relative-parent-imports': 'error',
       '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     },
