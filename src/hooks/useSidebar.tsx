@@ -1,5 +1,5 @@
-import { useAppDispatch, useAppSelector } from '@/redux'
-import { setIsSidebarCollapsed } from '@/state'
+import { useAppDispatch, useAppSelector } from '@/state/store'
+import { setIsSidebarCollapsed } from '@/state/slices/globalSlice'
 
 const useSidebar = () => {
   const dispatch = useAppDispatch()

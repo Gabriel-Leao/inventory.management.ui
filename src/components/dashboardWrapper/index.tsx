@@ -4,7 +4,7 @@ import { useEffect, type ReactNode } from 'react'
 
 import { Navbar } from '@/components/navbar'
 import { Sidebar } from '@/components/sidebar'
-import StoreProvider from '@/redux'
+import StoreProvider from '@/state/store'
 import { cn } from '@/lib/utils/cn'
 import useSidebar from '@/hooks/useSidebar'
 import useDarkMode from '@/hooks/useDarkMode'

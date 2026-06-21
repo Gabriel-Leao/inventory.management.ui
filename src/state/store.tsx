@@ -1,8 +1,8 @@
 import { ReactNode, useRef } from 'react'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector, Provider } from 'react-redux'
-import globalReducer from '@/state'
-import { api } from '@/state/api'
+import globalReducer from '@/state/slices/globalSlice'
+import { api } from '@/state/api/dashboard'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
 import {

@@ -1,5 +1,5 @@
-import { useAppDispatch, useAppSelector } from '@/redux'
-import { setIsDarkMode } from '@/state'
+import { useAppDispatch, useAppSelector } from '@/state/store'
+import { setIsDarkMode } from '@/state/slices/globalSlice'
 
 const useDarkMode = () => {
   const dispatch = useAppDispatch()
