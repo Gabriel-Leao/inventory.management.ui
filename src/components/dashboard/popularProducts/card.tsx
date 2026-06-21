@@ -13,7 +13,7 @@ export const PopularProductCard = ({ product, showBorderBottom }: PopularProduct
     <div
       className={cn(
         'flex items-center justify-between gap-3 px-5 py-7',
-        showBorderBottom && 'border-b border-[#EFEFEF]',
+        showBorderBottom && 'border-b',
       )}>
       <div className='flex items-center gap-3'>
         <div>img</div>

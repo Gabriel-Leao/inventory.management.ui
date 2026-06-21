@@ -7,9 +7,11 @@ type PopularProductsWrapperProps = {
 
 export const PopularProductsWrapper = ({ products }: PopularProductsWrapperProps) => {
   return (
-    <section className='row-span-3 rounded-2xl bg-white pb-16 shadow-md xl:row-span-6'>
-      <h3 className='px-7 pt-5 pb-2 text-lg font-semibold'>Popular Products</h3>
-      <hr className='text-[#EFEFEF]' />
+    <section className='row-span-3 flex flex-col justify-between rounded-2xl bg-white shadow-md xl:row-span-6'>
+      <div>
+        <h2 className='px-7 py-5 text-lg font-semibold'>Popular Products</h2>
+        <hr />
+      </div>
 
       <div className='h-full scrollbar-none overflow-auto'>
         {products.map((product, i) => (
