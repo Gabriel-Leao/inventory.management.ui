@@ -4,11 +4,11 @@ import { TrendingDown, TrendingUp } from 'lucide-react'
 import numeral from 'numeral'
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
-type PurchaseSummaryCardProps = {
+type PurchasedSummaryCardProps = {
   purchases: PurchaseSummary[]
 }
 
-export const PurchaseSummaryCard = ({ purchases }: PurchaseSummaryCardProps) => {
+export const PurchasedSummaryCard = ({ purchases }: PurchasedSummaryCardProps) => {
   const lastDataPoint = purchases[purchases.length - 1] || null
 
   return (

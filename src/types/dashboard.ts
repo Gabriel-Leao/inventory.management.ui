@@ -77,7 +77,7 @@ export type ExpenseSummary = {
 export type ExpenseByCategory = {
   id: string
   category: string
-  amount: bigint
+  amount: string
   date: Date
   expenseSummaryId?: string | null
   expenseSummary?: ExpenseSummary | null
