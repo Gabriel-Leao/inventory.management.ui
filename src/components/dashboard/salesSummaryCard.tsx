@@ -3,11 +3,11 @@ import { TrendingUp } from 'lucide-react'
 import { useState } from 'react'
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
-export type CardSalesSummaryProps = {
+export type SalesSummaryCardProps = {
   sales: SaleSummary[]
 }
 
-export const CardSalesSummary = ({ sales }: CardSalesSummaryProps) => {
+export const SalesSummaryCard = ({ sales }: SalesSummaryCardProps) => {
   const [timeframe, setTimeframe] = useState('weekly')
 
   const totalValueSum = sales.reduce((acc, curr) => acc + curr.totalValue, 0) || 0
