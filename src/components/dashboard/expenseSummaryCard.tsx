@@ -1,22 +1,31 @@
 import { ExpenseByCategory, ExpenseSummary } from '@/types/dashboard'
 import { TrendingUp } from 'lucide-react'
-import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'
+import { Cell, Pie, PieChart, PieSectorShapeProps, ResponsiveContainer, Sector } from 'recharts'
 
 const colors = ['#00C49F', '#0088FE', '#FFBB28']
 
 type ExpenseSummaryCardProps = {
   expenseByCategorySummary: ExpenseByCategory[]
-  expenseSummary: ExpenseSummary
+  expenseSummary: ExpenseSummary | null
 }
 
 type ExpenseSums = {
   [category: string]: number
 }
 
+const MyPieSlice = (props: PieSectorShapeProps) => (
+  <Sector
+    {...props}
+    fill={colors[props.index % colors.length]}
+  />
+)
+
 export const ExpenseSummaryCard = ({
   expenseByCategorySummary,
   expenseSummary,
 }: ExpenseSummaryCardProps) => {
+  if (!expenseSummary) return
+
   const expenseSums = expenseByCategorySummary.reduce(
     (acc: ExpenseSums, item: ExpenseByCategory) => {
       const category = item.category + ' Expenses'
@@ -49,23 +58,18 @@ export const ExpenseSummaryCard = ({
             height={140}>
             <PieChart>
               <Pie
+                fill='#8884D8'
                 data={expenseCategories}
                 innerRadius={50}
                 outerRadius={60}
-                fill='#8884D8'
                 dataKey='value'
                 nameKey='name'
                 cx='50%'
-                cy='50%'>
-                {expenseCategories.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={colors[index % colors.length]}
-                  />
-                ))}
-              </Pie>
+                cy='50%'
+                shape={MyPieSlice}
+              />
             </PieChart>
-            <div className='vasis-2/5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-center'>
+            <div className='absolute top-1/2 left-1/2 basis-2/5 -translate-x-1/2 -translate-y-1/2 transform text-center'>
               <span className='text-xl font-bold'>${formattedTotalExpenses}</span>
             </div>
           </ResponsiveContainer>

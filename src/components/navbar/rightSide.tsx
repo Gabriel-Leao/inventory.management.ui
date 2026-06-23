@@ -7,8 +7,8 @@ export const RightSide = () => {
 
   return (
     <div className='flex items-center justify-between gap-5'>
-      <div className='hidden items-center justify-between md:flex'>
-        <div>
+      <div className='hidden items-center justify-between gap-5 md:flex'>
+        <>
           <button onClick={toggleDarkMode}>
             {isDarkMode ? (
               <Sun
@@ -22,7 +22,7 @@ export const RightSide = () => {
               />
             )}
           </button>
-        </div>
+        </>
         <div className='relative'>
           <Bell
             className='cursor-pointer text-gray-500'
