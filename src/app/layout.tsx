@@ -2,8 +2,11 @@ import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { Open_Sans } from 'next/font/google'
 
+import { DashBoardLayout } from '@/components/dashboard/dashBoardLayout'
+import StoreProvider from '@/state/store'
+import { MuiThemeProvider } from '@/providers/MuiThemeProvider'
+
 import './globals.css'
-import { DashboardWrapper } from '@/components/dashboard/dashboardWrapper'
 
 const openSans = Open_Sans({
   variable: '--font-open-sans',
@@ -25,7 +28,11 @@ export default function RootLayout({
       lang='en'
       className={`${openSans.variable} h-full antialiased`}>
       <body>
-        <DashboardWrapper>{children}</DashboardWrapper>
+        <StoreProvider>
+          <MuiThemeProvider>
+            <DashBoardLayout>{children}</DashBoardLayout>
+          </MuiThemeProvider>
+        </StoreProvider>
       </body>
     </html>
   )

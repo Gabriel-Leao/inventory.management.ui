@@ -1,8 +1,10 @@
+'use client'
+
 import { ReactNode, useRef } from 'react'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector, Provider } from 'react-redux'
 import globalReducer from '@/state/slices/globalSlice'
-import { api } from '@/state/api/dashboard'
+import { api } from '@/state/api'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
 import {

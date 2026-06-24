@@ -4,7 +4,6 @@ import { useEffect, type ReactNode } from 'react'
 
 import { Navbar } from '@/components/navbar'
 import { Sidebar } from '@/components/sidebar'
-import StoreProvider from '@/state/store'
 import { cn } from '@/lib/utils/cn'
 import useSidebar from '@/hooks/useSidebar'
 import useDarkMode from '@/hooks/useDarkMode'
@@ -13,7 +12,7 @@ type DashboardWrapperProps = {
   children: ReactNode
 }
 
-const DashBoardLayout = ({ children }: DashboardWrapperProps) => {
+export const DashBoardLayout = ({ children }: DashboardWrapperProps) => {
   const { isSidebarCollapsed } = useSidebar()
   const { isDarkMode } = useDarkMode()
 
@@ -37,13 +36,5 @@ const DashBoardLayout = ({ children }: DashboardWrapperProps) => {
         {children}
       </main>
     </div>
-  )
-}
-
-export const DashboardWrapper = ({ children }: DashboardWrapperProps) => {
-  return (
-    <StoreProvider>
-      <DashBoardLayout>{children}</DashBoardLayout>
-    </StoreProvider>
   )
 }

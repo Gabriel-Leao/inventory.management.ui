@@ -1,3 +1,5 @@
+import { Product } from './product'
+
 export type User = {
   id: string
   name: string
@@ -12,18 +14,6 @@ export type DashboardMetrics = {
   purchaseSummary: PurchaseSummary[]
   expenseSummary: ExpenseSummary[]
   expenseByCategorySummary: ExpenseByCategory[]
-}
-
-export type Product = {
-  id: string
-  name: string
-  price: number
-  rating?: number | null
-  stockQuantity: number
-  createdAt: Date
-  updatedAt: Date
-  sales?: Sale[]
-  purchases?: Purchase[]
 }
 
 export type Sale = {

@@ -1,11 +1,7 @@
-import { API_BASE_URL } from '@/lib/utils/env'
 import { DashboardMetrics } from '@/types/dashboard'
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { api } from '@/state/api'
 
-export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
-  reducerPath: 'api',
-  tagTypes: ['DashboardMetrics'],
+export const dashboardApi = api.injectEndpoints({
   endpoints: (build) => ({
     getDashboardMetrics: build.query<DashboardMetrics, void>({
       query: () => '/dashboard',
@@ -14,4 +10,4 @@ export const api = createApi({
   }),
 })
 
-export const { useGetDashboardMetricsQuery } = api
+export const { useGetDashboardMetricsQuery } = dashboardApi
