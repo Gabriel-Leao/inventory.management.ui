@@ -42,7 +42,7 @@ export default function Inventory() {
 
   return (
     <div className='flex flex-col'>
-      <Title name='inventory' />
+      <Title name='Inventory' />
       <DataGrid
         rows={products}
         columns={columns}
