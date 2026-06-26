@@ -1,23 +1,32 @@
-import { InputHTMLAttributes } from 'react'
+import { forwardRef, InputHTMLAttributes } from 'react'
 
-type InputWrapper = {
+type InputWrapperProps = {
   label: string
   htmlFor: string
+  error?: string
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'className' | 'id'>
 
-export const InputWrapper = ({ label, htmlFor, ...props }: InputWrapper) => {
-  return (
-    <>
-      <label
-        htmlFor={htmlFor}
-        className='block pb-2 text-sm font-medium text-gray-700'>
-        {label}
-      </label>
-      <input
-        {...props}
-        id={htmlFor}
-        className='mb-2 block w-full rounded-md border-2 border-gray-500 p-2'
-      />
-    </>
-  )
-}
+export const InputWrapper = forwardRef<HTMLInputElement, InputWrapperProps>(
+  ({ label, htmlFor, error, ...props }, ref) => {
+    return (
+      <div className='mb-4'>
+        <label
+          htmlFor={htmlFor}
+          className='mb-1 block text-sm font-medium text-gray-700'>
+          {label}
+        </label>
+        <input
+          {...props}
+          ref={ref}
+          id={htmlFor}
+          className={`block w-full rounded-md border-2 p-2 transition-colors outline-none focus:border-blue-500 ${
+            error ? 'border-red-400 bg-red-50' : 'border-gray-300'
+          }`}
+        />
+        {error && <p className='mt-1 text-xs text-red-500'>{error}</p>}
+      </div>
+    )
+  },
+)
+
+InputWrapper.displayName = 'InputWrapper'

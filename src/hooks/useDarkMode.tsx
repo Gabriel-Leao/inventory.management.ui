@@ -1,9 +1,14 @@
+import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/state/store'
 import { setIsDarkMode } from '@/state/slices/globalSlice'
 
 const useDarkMode = () => {
   const dispatch = useAppDispatch()
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode)
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDarkMode)
+  }, [isDarkMode])
 
   const toggleDarkMode = () => {
     dispatch(setIsDarkMode(!isDarkMode))

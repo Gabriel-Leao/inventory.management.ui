@@ -1,12 +1,9 @@
 'use client'
-
-import { useEffect, type ReactNode } from 'react'
-
+import { type ReactNode } from 'react'
 import { Navbar } from '@/components/navbar'
 import { Sidebar } from '@/components/sidebar'
 import { cn } from '@/lib/utils/cn'
 import useSidebar from '@/hooks/useSidebar'
-import useDarkMode from '@/hooks/useDarkMode'
 
 type AppLayoutProps = {
   children: ReactNode
@@ -14,18 +11,9 @@ type AppLayoutProps = {
 
 export const AppLayout = ({ children }: AppLayoutProps) => {
   const { isSidebarCollapsed } = useSidebar()
-  const { isDarkMode } = useDarkMode()
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.add('light')
-    }
-  }, [])
 
   return (
-    <div className={cn('flex min-h-screen w-full bg-gray-50 text-gray-900', isDarkMode && 'dark')}>
+    <div className='flex min-h-screen w-full bg-gray-50 text-gray-900'>
       <Sidebar />
       <main
         className={cn(

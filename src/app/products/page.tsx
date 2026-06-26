@@ -40,7 +40,7 @@ export default function Products() {
     <div className='mx-auto w-full pb-5'>
       <div className='mb-6'>
         <div className='flex items-center rounded border-2 border-gray-200'>
-          <SearchIcon className='mt-2 flex h-5 w-5 items-center text-gray-500' />
+          <SearchIcon className='flex h-5 w-5 items-center pl-1 text-gray-500' />
           <input
             className='w-full rounded bg-white px-4 py-2'
             placeholder='Search products...'
