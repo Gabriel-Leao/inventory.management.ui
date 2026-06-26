@@ -1,7 +1,6 @@
 'use client'
 
-import { PageTitle } from '@/components/pageTitle'
-import useDarkMode from '@/hooks/useDarkMode'
+import { Title } from '@/components/title'
 import { useGetProductsQuery } from '@/state/api/product'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 
@@ -31,7 +30,6 @@ const columns: GridColDef[] = [
 ]
 
 export default function Inventory() {
-  const { isDarkMode } = useDarkMode()
   const { data: products, isLoading, isError } = useGetProductsQuery()
 
   if (isLoading) {
@@ -44,7 +42,7 @@ export default function Inventory() {
 
   return (
     <div className='flex flex-col'>
-      <PageTitle name='inventory' />
+      <Title name='inventory' />
       <DataGrid
         rows={products}
         columns={columns}

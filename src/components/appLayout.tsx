@@ -8,11 +8,11 @@ import { cn } from '@/lib/utils/cn'
 import useSidebar from '@/hooks/useSidebar'
 import useDarkMode from '@/hooks/useDarkMode'
 
-type DashboardWrapperProps = {
+type AppLayoutProps = {
   children: ReactNode
 }
 
-export const DashBoardLayout = ({ children }: DashboardWrapperProps) => {
+export const AppLayout = ({ children }: AppLayoutProps) => {
   const { isSidebarCollapsed } = useSidebar()
   const { isDarkMode } = useDarkMode()
 

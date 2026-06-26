@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils/cn'
-import { Product } from '@/types/dashboard'
+import { Product } from '@/types/product'
 import { ShoppingBag } from 'lucide-react'
-import { Rating } from './rating'
+import { Rating } from '@/components/rating'
 
 type PopularProductCardProps = {
   product: Product

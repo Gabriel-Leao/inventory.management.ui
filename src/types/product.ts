@@ -18,3 +18,10 @@ export type NewProduct = {
   rating?: number | null
   stockQuantity: number
 }
+
+export type ProductFormData = {
+  name: string
+  price: number
+  stockQuantity: number
+  rating: number
+}

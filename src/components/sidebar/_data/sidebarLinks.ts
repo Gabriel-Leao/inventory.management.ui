@@ -2,7 +2,7 @@ import { Archive, CircleDollarSign, Clipboard, Layout, SlidersHorizontal, User }
 
 export const sidebarLinks = [
   {
-    href: '/',
+    href: '/dashboard',
     icon: Layout,
     label: 'Dashboard',
   },

@@ -1,5 +1,5 @@
-import { Product } from '@/types/dashboard'
-import { PopularProductCard } from './card'
+import { Product } from '@/types/product'
+import { PopularProductCard } from '@/app/dashboard/_components/popularProducts/card'
 
 type PopularProductsWrapperProps = {
   products: Product[]

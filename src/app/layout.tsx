@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { Open_Sans } from 'next/font/google'
 
-import { DashBoardLayout } from '@/components/dashboard/dashBoardLayout'
+import { AppLayout } from '@/components/appLayout'
 import StoreProvider from '@/state/store'
 import { MuiThemeProvider } from '@/providers/MuiThemeProvider'
 
@@ -30,7 +30,7 @@ export default function RootLayout({
       <body>
         <StoreProvider>
           <MuiThemeProvider>
-            <DashBoardLayout>{children}</DashBoardLayout>
+            <AppLayout>{children}</AppLayout>
           </MuiThemeProvider>
         </StoreProvider>
       </body>

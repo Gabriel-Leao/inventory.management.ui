@@ -1,6 +1,6 @@
 import { ExpenseByCategory, ExpenseSummary } from '@/types/dashboard'
 import { TrendingUp } from 'lucide-react'
-import { Cell, Pie, PieChart, PieSectorShapeProps, ResponsiveContainer, Sector } from 'recharts'
+import { Pie, PieChart, PieSectorShapeProps, ResponsiveContainer, Sector } from 'recharts'
 
 const colors = ['#00C49F', '#0088FE', '#FFBB28']
 
