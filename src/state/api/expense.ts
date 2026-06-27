@@ -1,9 +1,9 @@
 import { api } from '@/state/api'
-import { ExpenseByCategory } from '@/types/expense'
+import { ExpenseByCategorySummary } from '@/types/expense'
 
 export const expenseApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getExpensesByCategory: build.query<ExpenseByCategory, void>({
+    getExpensesByCategory: build.query<ExpenseByCategorySummary[], void>({
       query: () => '/expenses',
       providesTags: ['Expenses'],
     }),

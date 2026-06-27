@@ -1,5 +1,6 @@
 'use client'
 
+import { InventorySkeleton } from '@/components/skeletons/inventorySkeleton'
 import { Title } from '@/components/title'
 import { useGetProductsQuery } from '@/state/api/product'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
@@ -32,12 +33,10 @@ const columns: GridColDef[] = [
 export default function Inventory() {
   const { data: products, isLoading, isError } = useGetProductsQuery()
 
-  if (isLoading) {
-    return <div className='m-5'>loading...</div>
-  }
+  if (isLoading) return <InventorySkeleton />
 
   if (isError || !products) {
-    return <div className='m-5'>Failed to fetch products</div>
+    return <div className='py-4 text-center text-red-500'>Failed to fetch products</div>
   }
 
   return (

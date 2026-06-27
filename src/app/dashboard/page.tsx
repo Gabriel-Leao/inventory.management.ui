@@ -7,16 +7,15 @@ import { PurchasedSummaryCard } from '@/app/dashboard/_components/purchasedSumma
 import { ExpenseSummaryCard } from '@/app/dashboard/_components/expenseSummaryCard'
 import { StatCard } from '@/app/dashboard/_components/statCard'
 import { CheckCircle, Package, Tag, TrendingDown, TrendingUp } from 'lucide-react'
+import { DashboardSkeleton } from '@/components/skeletons/dashboardSkeleton'
 
 export default function Dashboard() {
   const { data: dashBoardMetrics, isLoading, isError } = useGetDashboardMetricsQuery()
 
-  if (isLoading) {
-    return <div className='m-5'>loading...</div>
-  }
+  if (isLoading) return <DashboardSkeleton />
 
   if (isError) {
-    return <div className='m-5'>Failed to fetch data</div>
+    return <div className='py-4 text-center text-red-500'>Failed to fetch data</div>
   }
 
   const products = dashBoardMetrics?.products || []

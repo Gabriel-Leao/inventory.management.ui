@@ -7,6 +7,7 @@ import { PlusCircleIcon, SearchIcon } from 'lucide-react'
 import { ProductCard } from '@/app/products/_components/productCard'
 import { CreateProductModal } from '@/app/products/_components/createProductModal'
 import { ProductFormData } from '@/types/product'
+import { ProductsSkeleton } from '@/components/skeletons/productsSkeleton'
 
 export default function Products() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -28,12 +29,10 @@ export default function Products() {
     await createProduct(productData)
   }
 
-  if (isLoading) {
-    return <div className='m-5'>loading...</div>
-  }
+  if (isLoading) return <ProductsSkeleton />
 
   if (isError || !products) {
-    return <div className='m-5'>Failed to fetch products</div>
+    return <div className='py-4 text-center text-red-500'>Failed to fetch products</div>
   }
 
   return (
@@ -58,7 +57,7 @@ export default function Products() {
         </button>
       </div>
 
-      <div className='gridgrid-cols-1 grid justify-between gap-10 md:grid-cols-2 lg:grid-cols-3'>
+      <div className='grid grid-cols-1 justify-between gap-10 md:grid-cols-2 lg:grid-cols-3'>
         {products.length > 1 &&
           products.map((product) => (
             <ProductCard

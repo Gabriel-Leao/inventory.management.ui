@@ -1,5 +1,6 @@
 'use client'
 
+import { UsersSkeleton } from '@/components/skeletons/userSkeleton'
 import { Title } from '@/components/title'
 import { useGetUsersQuery } from '@/state/api/user'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
@@ -13,12 +14,10 @@ const columns: GridColDef[] = [
 export default function Users() {
   const { data: users, isLoading, isError } = useGetUsersQuery()
 
-  if (isLoading) {
-    return <div className='m-5'>loading...</div>
-  }
+  if (isLoading) return <UsersSkeleton />
 
   if (isError || !users) {
-    return <div className='m-5'>Failed to fetch products</div>
+    return <div className='py-4 text-center text-red-500'>Failed to fetch products</div>
   }
 
   return (

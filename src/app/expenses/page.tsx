@@ -5,6 +5,7 @@ import { useGetExpensesByCategoryQuery } from '@/state/api/expense'
 import { ExpenseByCategorySummary } from '@/types/expense'
 import { useMemo, useState } from 'react'
 import { Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts'
+import { ExpenseSkeleton } from '@/components/skeletons/expenseSkeleton'
 
 type AggregatedDataItem = {
   name: string
@@ -24,10 +25,7 @@ export default function Expenses() {
   const [endDate, setEndDate] = useState('')
 
   const { data: expensesData, isLoading, isError } = useGetExpensesByCategoryQuery()
-  const expenses = useMemo(
-    () => (expensesData as unknown as ExpenseByCategorySummary[]) ?? [],
-    [expensesData],
-  )
+  const expenses = useMemo(() => (expensesData as ExpenseByCategorySummary[]) ?? [], [expensesData])
 
   const parseDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -64,9 +62,7 @@ export default function Expenses() {
       'mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md',
   }
 
-  if (isLoading) {
-    return <div className='py-4'>Loading...</div>
-  }
+  if (isLoading) return <ExpenseSkeleton />
 
   if (isError || !expensesData) {
     return <div className='py-4 text-center text-red-500'>Failed to fetch expenses</div>

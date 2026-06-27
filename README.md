@@ -1,36 +1,169 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Inventory Management — Frontend
 
-## Getting Started
+Interface web para gerenciamento de estoque, produtos, despesas e usuários. Construída com Next.js, Redux Toolkit e Material UI.
 
-First, run the development server:
+> Este repositório contém apenas o **frontend** da aplicação. O backend deve ser executado separadamente e exposto na URL configurada via variável de ambiente.
+
+---
+
+## Tecnologias
+
+- **Next.js 16** (App Router)
+- **React 19**
+- **TypeScript**
+- **Tailwind CSS v4**
+- **Redux Toolkit** + **RTK Query** para gerenciamento de estado e chamadas à API
+- **redux-persist** para persistência do estado global no `localStorage`
+- **Material UI** + **MUI X Data Grid** para tabelas e componentes de UI
+- **Recharts** para gráficos
+- **React Hook Form** + **Zod** para formulários com validação
+- **Lucide React** para ícones
+- **Prettier** + **ESLint** para padronização de código
+
+---
+
+## Pré-requisitos
+
+- Node.js 18+
+- npm ou equivalente
+- Backend da aplicação em execução
+
+---
+
+## Instalação
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Gabriel-Leao/inventory.management.ui
+cd inventory.management.ui
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Variáveis de ambiente
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Crie um arquivo `.env.local` na raiz do projeto:
 
-## Learn More
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3333
+```
 
-To learn more about Next.js, take a look at the following resources:
+A variável é validada em tempo de execução via Zod. A aplicação não inicia se ela estiver ausente ou com formato inválido.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Scripts
 
-## Deploy on Vercel
+| Comando | Descrição |
+|---|---|
+| `npm run dev` | Inicia o servidor de desenvolvimento |
+| `npm run build` | Gera o build de produção |
+| `npm start` | Inicia o servidor de produção |
+| `npm run lint` | Executa o ESLint |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Estrutura do projeto
+
+```
+src/
+├── app/                        # Rotas (Next.js App Router)
+│   ├── dashboard/              # Página principal com métricas e gráficos
+│   ├── inventory/              # Tabela de inventário por produto
+│   ├── products/               # Listagem e cadastro de produtos
+│   ├── expenses/               # Visualização de despesas por categoria
+│   ├── users/                  # Listagem de usuários
+│   └── settings/               # Configurações do usuário
+│
+├── components/                 # Componentes reutilizáveis
+│   ├── navbar/                 # Barra de navegação superior
+│   ├── sidebar/                # Menu lateral com links de navegação
+│   ├── skeletons/              # Skeleton screens de loading por página
+│   ├── appLayout.tsx           # Layout wrapper (sidebar + navbar + conteúdo)
+│   ├── inputWrapper.tsx        # Wrapper de campos de formulário
+│   ├── rating.tsx              # Componente de avaliação por estrelas
+│   └── title.tsx               # Componente de título de página
+│
+├── hooks/
+│   ├── useDarkMode.tsx         # Controla o tema escuro via Redux
+│   └── useSidebar.tsx          # Controla o estado colapsado da sidebar
+│
+├── providers/
+│   └── MuiThemeProvider.tsx    # Provider de tema do Material UI
+│
+├── state/
+│   ├── store.tsx               # Configuração do Redux store com persistência
+│   ├── slices/
+│   │   └── globalSlice.ts      # Estado global (sidebar, dark mode)
+│   └── api/
+│       ├── index.ts            # Instância base do RTK Query
+│       ├── dashboard.ts        # Endpoint de métricas do dashboard
+│       ├── product.ts          # Endpoints de produtos (GET, POST)
+│       ├── expense.ts          # Endpoint de despesas por categoria
+│       └── user.ts             # Endpoint de usuários
+│
+├── types/
+│   ├── index.ts                # Tipos globais (User, DashboardMetrics, Sale, Purchase)
+│   ├── product.ts              # Tipos e schema Zod de produtos
+│   └── expense.ts              # Tipos de despesas e categorias
+│
+└── lib/
+    └── utils/
+        ├── cn.ts               # Utilitário para composição de classes CSS
+        └── env.ts              # Validação de variáveis de ambiente
+```
+
+---
+
+## Funcionalidades
+
+**Dashboard** — visão geral com cards de métricas (vendas, compras, despesas) e lista de produtos populares, com gráficos de área e de barras via Recharts.
+
+**Inventory** — tabela completa do estoque utilizando MUI X Data Grid, com colunas para nome, preço, rating e quantidade em estoque.
+
+**Products** — listagem em grid com busca em tempo real e modal de criação de produto, com validação de formulário via React Hook Form + Zod.
+
+**Expenses** — gráfico de pizza com despesas agrupadas por categoria, filtráveis por categoria e por intervalo de datas.
+
+**Users** — tabela de usuários com ID, nome e e-mail via MUI X Data Grid.
+
+**Settings** — página de configurações com campos editáveis e toggles para notificações e modo escuro.
+
+---
+
+## Loading states
+
+Todas as páginas com chamadas à API possuem skeleton screens que replicam o layout real do conteúdo durante o carregamento, evitando saltos de layout e textos genéricos de "loading...". Os skeletons usam `animate-pulse` do Tailwind e seguem os mesmos breakpoints responsivos das páginas correspondentes.
+
+| Componente | Localização |
+|---|---|
+| `DashboardSkeleton` | `src/components/skeletons/dashboardSkeleton.tsx` |
+| `ProductsSkeleton` | `src/components/skeletons/productsSkeleton.tsx` |
+| `ExpenseSkeleton` | `src/components/skeletons/expenseSkeleton.tsx` |
+| `InventorySkeleton` | `src/components/skeletons/inventorySkeleton.tsx` |
+| `UserSkeleton` | `src/components/skeletons/userSkeleton.tsx` |
+
+---
+
+## Estado global
+
+O Redux store persiste dois valores no `localStorage` via `redux-persist`:
+
+| Estado | Descrição |
+|---|---|
+| `isSidebarCollapsed` | Define se a sidebar está recolhida |
+| `isDarkMode` | Define o tema da aplicação |
+
+Toda a comunicação com a API é feita via **RTK Query**, com cache automático e invalidação por tags (`Products`, `Users`, `Expenses`, `DashboardMetrics`).
+
+---
+
+## Endpoints consumidos
+
+| Método | Rota | Descrição |
+|---|---|---|
+| `GET` | `/dashboard` | Métricas gerais do dashboard |
+| `GET` | `/products` | Lista de produtos (aceita `?search=`) |
+| `POST` | `/products` | Criação de produto |
+| `GET` | `/expenses` | Despesas agrupadas por categoria |
+| `GET` | `/users` | Lista de usuários |
