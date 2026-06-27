@@ -60,6 +60,9 @@ A variável é validada em tempo de execução via Zod. A aplicação não inici
 | `npm run build` | Gera o build de produção |
 | `npm start` | Inicia o servidor de produção |
 | `npm run lint` | Executa o ESLint |
+| `npm test` | Executa os testes em modo watch |
+| `npm run test:run` | Executa os testes uma vez |
+| `npm run test:cov` | Executa os testes e gera relatório de cobertura |
 
 ---
 
@@ -142,6 +145,26 @@ Todas as páginas com chamadas à API possuem skeleton screens que replicam o la
 | `ExpenseSkeleton` | `src/components/skeletons/expenseSkeleton.tsx` |
 | `InventorySkeleton` | `src/components/skeletons/inventorySkeleton.tsx` |
 | `UserSkeleton` | `src/components/skeletons/userSkeleton.tsx` |
+
+---
+
+## Testes
+
+Os testes são escritos com **Vitest** e **Testing Library**. O Jest foi descartado por incompatibilidade com o `moduleResolution: nodenext` do TypeScript e com os imports ESM nativos do Next.js 16 — configurá-lo exigiria um setup complexo de Babel e transforms customizados. O Vitest integra nativamente com o Vite, suporta ESM sem configuração adicional e oferece uma API idêntica à do Jest, tornando a migração trivial caso necessário.
+
+Os testes cobrem as camadas com lógica real — hooks de estado e validação de formulário — e não componentes puramente visuais, onde o custo de manutenção supera o benefício.
+
+| Arquivo | O que testa |
+|---|---|
+| `src/hooks/useDarkMode.test.tsx` | Toggle de tema escuro e aplicação da classe `dark` no DOM |
+| `src/hooks/useSidebar.test.tsx` | Toggle da sidebar e classes CSS resultantes |
+| `src/types/productSchema.test.ts` | Todas as regras de validação do schema Zod de produto |
+
+Para rodar os testes, instale as dependências de teste primeiro:
+
+```bash
+npm install -D vitest @vitejs/plugin-react @testing-library/react @testing-library/dom jsdom
+```
 
 ---
 
