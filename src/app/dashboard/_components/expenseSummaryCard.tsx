@@ -1,4 +1,4 @@
-import { ExpenseByCategory, ExpenseSummary } from '@/types/dashboard'
+import { ExpenseByCategory, ExpenseSummary } from '@/types/expense'
 import { TrendingUp } from 'lucide-react'
 import { Pie, PieChart, PieSectorShapeProps, ResponsiveContainer, Sector } from 'recharts'
 

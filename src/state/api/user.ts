@@ -1,5 +1,5 @@
 import { api } from '@/state/api'
-import { User } from '@/types/dashboard'
+import { User } from '@/types'
 
 export const userApi = api.injectEndpoints({
   endpoints: (build) => ({

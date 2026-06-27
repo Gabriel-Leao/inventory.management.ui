@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils/cn'
-import { PurchaseSummary } from '@/types/dashboard'
+import { PurchaseSummary } from '@/types'
 import { TrendingDown, TrendingUp } from 'lucide-react'
 import numeral from 'numeral'
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'

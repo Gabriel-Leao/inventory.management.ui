@@ -1,4 +1,4 @@
-import { SaleSummary } from '@/types/dashboard'
+import { SaleSummary } from '@/types'
 import { TrendingUp } from 'lucide-react'
 import { useState } from 'react'
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'

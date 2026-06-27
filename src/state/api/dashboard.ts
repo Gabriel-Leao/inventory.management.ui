@@ -1,4 +1,4 @@
-import { DashboardMetrics } from '@/types/dashboard'
+import { DashboardMetrics } from '@/types'
 import { api } from '@/state/api'
 
 export const dashboardApi = api.injectEndpoints({

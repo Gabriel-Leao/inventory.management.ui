@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { Purchase, Sale } from './dashboard'
+import { Purchase, Sale } from '.'
 
 export type Product = {
   id: string

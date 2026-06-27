@@ -1,3 +1,4 @@
+import { ExpenseByCategory, ExpenseSummary } from './expense'
 import { Product } from './product'
 
 export type User = {
@@ -36,13 +37,6 @@ export type Purchase = {
   product?: Product
 }
 
-export type Expense = {
-  id: string
-  category: string
-  amount: number
-  timestamp: Date
-}
-
 export type SaleSummary = {
   id: string
   totalValue: number
@@ -55,20 +49,4 @@ export type PurchaseSummary = {
   totalPurchased: number
   changePercentage?: number | null
   date: Date
-}
-
-export type ExpenseSummary = {
-  id: string
-  totalExpenses: number
-  date: Date
-  expenseByCategory?: ExpenseByCategory[]
-}
-
-export type ExpenseByCategory = {
-  id: string
-  category: string
-  amount: string
-  date: Date
-  expenseSummaryId?: string | null
-  expenseSummary?: ExpenseSummary | null
 }
