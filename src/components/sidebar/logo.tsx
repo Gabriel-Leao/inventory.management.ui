@@ -1,6 +1,7 @@
 import useSidebar from '@/hooks/useSidebar'
 import { cn } from '@/lib/utils/cn'
 import { Menu } from 'lucide-react'
+import Image from 'next/image'
 
 export const Logo = () => {
   const { isSidebarCollapsed, toggleSidebar } = useSidebar()
@@ -11,7 +12,12 @@ export const Logo = () => {
         'flex items-center justify-between gap-3 px-8 pt-8 md:justify-normal',
         isSidebarCollapsed && 'hidden px-5',
       )}>
-      <div>logo</div>
+      <Image
+        src='/assets/logo.png'
+        alt='app logo'
+        width={36}
+        height={40}
+      />
       <h1 className={cn('text-2xl font-extrabold', isSidebarCollapsed && 'hidden')}>STOCK</h1>
       <button
         className='rounded-full bg-gray-100 p-3 hover:bg-blue-100 md:hidden'

@@ -2,6 +2,8 @@ import { cn } from '@/lib/utils/cn'
 import { Product } from '@/types/product'
 import { ShoppingBag } from 'lucide-react'
 import { Rating } from '@/components/rating'
+import Image from 'next/image'
+import { getRandomProduct } from '@/lib/utils/getRandomProduct'
 
 type PopularProductCardProps = {
   product: Product
@@ -16,7 +18,13 @@ export const PopularProductCard = ({ product, showBorderBottom }: PopularProduct
         showBorderBottom && 'border-b',
       )}>
       <div className='flex items-center gap-3'>
-        <div>img</div>
+        <Image
+          src={getRandomProduct()}
+          alt={product.name}
+          width={48}
+          height={48}
+          className='h-14 w-14 rounded-lg bg-gray-100'
+        />
         <div className='flex flex-col justify-between gap-1'>
           <p className='font-bold text-gray-700'>{product.name}</p>
           <p className='tex-sm flex items-center'>

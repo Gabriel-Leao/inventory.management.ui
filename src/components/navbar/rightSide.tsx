@@ -1,5 +1,6 @@
 import useDarkMode from '@/hooks/useDarkMode'
 import { Bell, Moon, Settings, Sun } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 export const RightSide = () => {
@@ -34,7 +35,12 @@ export const RightSide = () => {
         </div>
         <hr className='mx-3 h-7 w-0 border-l border-solid border-gray-300' />
         <div className='flex cursor-pointer items-center gap-3'>
-          <div className='h-9 w-9'>image</div>
+          <Image
+            src='/assets/profile.png'
+            alt='profile pic'
+            width={36}
+            height={36}
+          />
           <span className='font-semibold'>Gabriel</span>
         </div>
       </div>
